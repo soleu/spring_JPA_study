@@ -17,18 +17,26 @@ public class JpaMain {
         //code 작성
         try {
             //CREATE
+            //비영속
 //            Member member = new Member();
-//            member.setId(2L);
-//            member.setName("HelloB");
-//            em.persist(member);
+//            member.setId(10L);
+//            member.setName("HelloJPA");
+            //영속
+            Member member1 = new Member(150L, "A");
+            Member member2 = new Member(160L, "B");
+
+            System.out.println("=== BEFORE ===");
+            em.persist(member1);
+            em.persist(member2);
+            System.out.println("=== AFTER ===");
             //READ
-            Member findMember = em.find(Member.class, 1L);
-//            System.out.println("findMember.id = "+findMember.getId());
-//            System.out.println("findMember.name = "+findMember.getName());
+//            Member findMember = em.find(Member.class, 1L);
+//            System.out.println("findMember.id = " + findMember.getId());//1차 캐시에서 조회되어 select문 사용 X
+//            System.out.println("findMember.name = " + findMember.getName());
 //            //DELETE
 //            em.remove(findMember);
             //UPDATE
-            findMember.setName("HelloJPA");     // persist 필요없음(update 쿼리 알아서 날림)
+//            findMember.setName("HelloJPA");     // persist 필요없음(update 쿼리 알아서 날림)
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
