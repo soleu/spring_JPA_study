@@ -9,7 +9,7 @@
           <factory-entry name="hello" />
         </datasource-mapping>
         <naming-strategy-map />
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/../../Spring_basic/jpashop/src/main/resources/META-INF/persistence.xml" />
       </configuration>
     </facet>
   </component>
