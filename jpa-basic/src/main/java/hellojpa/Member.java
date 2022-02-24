@@ -15,9 +15,10 @@ public class Member {
     @Column(name = "USERNAME")//컬럼 이름 설정
     private String username;
 
-    @ManyToOne //단방향 ORM 매핑
+    @ManyToOne //단방향 ORM 매핑(양방향도 동일)
     @JoinColumn(name = "TEAM_ID")
     private Team team;
+
 //
 //    private Integer age;
 //
