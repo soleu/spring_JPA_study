@@ -19,7 +19,7 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
-//
+    //
 //    private Integer age;
 //
 //    @Enumerated(EnumType.STRING)//DB에 enum이 없어서, string으로 설정됨
@@ -36,6 +36,9 @@ public class Member {
 //
 //    @Lob//큰거(blob)
 //    private String description;
+    @OneToOne //일대일
+    @JoinColumn(name="LOCKER_ID")
+    private Locker locker;
 
     public Long getId() {
         return id;
