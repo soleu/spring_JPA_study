@@ -14,6 +14,11 @@ public class Team {
 
     @OneToMany(mappedBy = "team") //양방향 매핑, mappedBy: 반대방향 표시
     List<Member> members = new ArrayList<Member>();
+//연관관계갸 양쪽에 있으면 무한루프가 될수 있음(둘 중 하나)
+//    public void addMember(Member member) {
+//        member.setTeam(this);
+//        members.add(member);
+//    }
 
     public List<Member> getMembers() {
         return members;

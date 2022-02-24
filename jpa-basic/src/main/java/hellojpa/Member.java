@@ -37,7 +37,6 @@ public class Member {
 //    @Lob//큰거(blob)
 //    private String description;
 
-
     public Long getId() {
         return id;
     }
@@ -58,7 +57,9 @@ public class Member {
         return team;
     }
 
+    //set보다는 change같은걸 사용하면서 차이를 두기(확인하기 쉽게)
     public void setTeam(Team team) {
         this.team = team;
+        team.getMembers().add(this);
     }
 }
