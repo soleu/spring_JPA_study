@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+
 public class JpaMain {
     public static void main(String[] args) {
         //emf,em 생성
@@ -18,19 +19,24 @@ public class JpaMain {
         try {
             //CREATE
             //비영속
-//            Member member = new Member();
-//            member.setId(10L);
-//            member.setName("HelloJPA");
-            //영속
-            Member member1 = new Member(150L, "A");
-            Member member2 = new Member(160L, "B");
+            Member member = new Member();
+            member.setId(1L);
+            member.setUsername("A");
+            member.setRoleType(RoleType.USER);
 
-            System.out.println("=== BEFORE ===");
-            em.persist(member1);
-            em.persist(member2);
-            System.out.println("=== AFTER ===");
+            em.persist(member);
+            //영속
+//            Member member1 = new Member(150L, "A");
+//            Member member2 = new Member(160L, "B");
+
+//
+//            em.persist(member1);
+//            em.persist(member2);
+//            System.out.println("=== AFTER ===");
             //READ
 //            Member findMember = em.find(Member.class, 1L);
+//            em.detach(member1);//준영속 상태로 만들어서 JPA에서 관리를 하지 않음.
+//            member1.setName("AAA"); //쿼리 실행X
 //            System.out.println("findMember.id = " + findMember.getId());//1차 캐시에서 조회되어 select문 사용 X
 //            System.out.println("findMember.name = " + findMember.getName());
 //            //DELETE
