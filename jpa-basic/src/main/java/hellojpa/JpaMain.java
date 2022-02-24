@@ -17,16 +17,30 @@ public class JpaMain {
         tx.begin();
         //code 작성
         try {
+            //단방향 저장
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
+            Member member=new Member();
+            member.setUsername("member1");
+            member.setTeam(team); //객체로 바로 넣음
+            em.persist(member);
+
+            Member findMember=em.find(Member.class,member.getId());
+
+            Team findTeam=findMember.getTeam();
+
             //CREATE
             //비영속
-            Member member = new Member();
-//            member.setId("A");
-            member.setUsername("A");
-            member.setRoleType(RoleType.USER);
-            System.out.println("=========");
-            em.persist(member);
-            System.out.println("=========");
-            System.out.println("member.id = "+member.getId());
+//            Member member = new Member();
+////            member.setId("A");
+//            member.setUsername("A");
+//            member.setRoleType(RoleType.USER);
+//            System.out.println("=========");
+//            em.persist(member);
+//            System.out.println("=========");
+//            System.out.println("member.id = "+member.getId());
             //영속
 //            Member member1 = new Member(150L, "A");
 //            Member member2 = new Member(160L, "B");

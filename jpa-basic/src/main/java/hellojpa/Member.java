@@ -6,44 +6,42 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@TableGenerator(
-        name = "MEMBER_SEQ_GENERATOR",
-        table = "MY_SEQUENCES",
-        initialValue = 1,allocationSize = 1
-)
 public class Member {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
+    @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name", nullable = false)//컬럼 이름 설정
+    @Column(name = "USERNAME")//컬럼 이름 설정
     private String username;
 
-    private Integer age;
+    @ManyToOne //단방향 ORM 매핑
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
+//
+//    private Integer age;
+//
+//    @Enumerated(EnumType.STRING)//DB에 enum이 없어서, string으로 설정됨
+//    private RoleType roleType;
+//
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date createdDate;
+//
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date lastModifiedDate;
+//
+//    private LocalDate testLocalDate; //년월
+//    private LocalDateTime testLocalDateTime; //년월일
+//
+//    @Lob//큰거(blob)
+//    private String description;
 
-    @Enumerated(EnumType.STRING)//DB에 enum이 없어서, string으로 설정됨
-    private RoleType roleType;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
-
-    private LocalDate testLocalDate; //년월
-    private LocalDateTime testLocalDateTime; //년월일
-
-    @Lob//큰거(blob)
-    private String description;
-
-    public Member() {
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,43 +53,11 @@ public class Member {
         this.username = username;
     }
 
-    public Integer getAge() {
-        return age;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public RoleType getRoleType() {
-        return roleType;
-    }
-
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
