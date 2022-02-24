@@ -20,11 +20,13 @@ public class JpaMain {
             //CREATE
             //비영속
             Member member = new Member();
-            member.setId(1L);
+//            member.setId("A");
             member.setUsername("A");
             member.setRoleType(RoleType.USER);
-
+            System.out.println("=========");
             em.persist(member);
+            System.out.println("=========");
+            System.out.println("member.id = "+member.getId());
             //영속
 //            Member member1 = new Member(150L, "A");
 //            Member member2 = new Member(160L, "B");

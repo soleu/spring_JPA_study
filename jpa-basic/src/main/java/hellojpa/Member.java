@@ -6,10 +6,17 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
+@TableGenerator(
+        name = "MEMBER_SEQ_GENERATOR",
+        table = "MY_SEQUENCES",
+        initialValue = 1,allocationSize = 1
+)
 public class Member {
     @Id
-    private long id;
-    @Column(name = "name")//컬럼 이름 설정
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
+    private Long id;
+
+    @Column(name = "name", nullable = false)//컬럼 이름 설정
     private String username;
 
     private Integer age;
