@@ -16,8 +16,12 @@ public class Order {
 //    private Long memberId;
 
     @ManyToOne
-    @JoinColumn(name = "ORDER_ID")
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
 
     private LocalDateTime orderDate;
 
