@@ -18,28 +18,36 @@ public class JpaMain {
         tx.begin();
         //code 작성
         try {
-            //단방향 저장
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
+            Movie movie=new Movie();
+            movie.setDirector("aaaa");
+            movie.setActor("bbbb");
+            movie.setName("바람과함께사라지다.");
+            movie.setPrice(10000);
 
-            Member member = new Member();
-            member.setUsername("member1");
-            member.setTeam(team); //객체로 바로 넣음
-            em.persist(member);
+            em.persist(movie);
 
-            em.flush();
-            em.clear();
+//            //단방향 저장
+//            Team team = new Team();
+//            team.setName("TeamA");
+//            em.persist(team);
+//
+//            Member member = new Member();
+//            member.setUsername("member1");
+//            member.setTeam(team); //객체로 바로 넣음
+//            em.persist(member);
+//
+//            em.flush();
+//            em.clear();
             //단방향 조회
 //            Member findMember=em.find(Member.class,member.getId());
 //            Team findTeam=findMember.getTeam();
-//양방항 조회
-            Team findTeam = em.find(Team.class, team.getId());
-            List<Member> members = findTeam.getMembers();
-
-            for (Member m : members) {
-                System.out.println("m = " + m.getUsername());
-            }
+////양방항 조회
+//            Team findTeam = em.find(Team.class, team.getId());
+//            List<Member> members = findTeam.getMembers();
+//
+//            for (Member m : members) {
+//                System.out.println("m = " + m.getUsername());
+//            }
             //CREATE
             //비영속
 //            Member member = new Member();
