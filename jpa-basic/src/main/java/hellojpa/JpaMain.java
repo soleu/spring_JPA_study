@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -18,26 +19,30 @@ public class JpaMain {
         tx.begin();
         //code 작성
         try {
-            Movie movie=new Movie();
-            movie.setDirector("aaaa");
-            movie.setActor("bbbb");
-            movie.setName("바람과함께사라지다.");
-            movie.setPrice(10000);
 
-            em.persist(movie);
+
+//            Movie movie=new Movie();
+//            movie.setDirector("aaaa");
+//            movie.setActor("bbbb");
+//            movie.setName("바람과함께사라지다.");
+//            movie.setPrice(10000);
+
+//            em.persist(movie);
 
 //            //단방향 저장
 //            Team team = new Team();
 //            team.setName("TeamA");
 //            em.persist(team);
 //
-//            Member member = new Member();
-//            member.setUsername("member1");
+            Member member = new Member();
+            member.setCreatedBy("kim");
+            member.setCreatedTime(LocalDateTime.now());
+            member.setUsername("member1");
 //            member.setTeam(team); //객체로 바로 넣음
-//            em.persist(member);
+            em.persist(member);
 //
-//            em.flush();
-//            em.clear();
+            em.flush();
+            em.clear();
             //단방향 조회
 //            Member findMember=em.find(Member.class,member.getId());
 //            Team findTeam=findMember.getTeam();

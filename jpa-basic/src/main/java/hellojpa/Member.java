@@ -3,10 +3,11 @@ package hellojpa;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity{
     @Id
     @GeneratedValue
     @Column(name = "MEMBER_ID")
@@ -19,26 +20,31 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
-    //
-//    private Integer age;
+
+    //    private Integer age;
 //
 //    @Enumerated(EnumType.STRING)//DB에 enum이 없어서, string으로 설정됨
 //    private RoleType roleType;
 //
+
+
 //    @Temporal(TemporalType.TIMESTAMP)
 //    private Date createdDate;
-//
-//    @Temporal(TemporalType.TIMESTAMP)
+
+    //    @Temporal(TemporalType.TIMESTAMP)
 //    private Date lastModifiedDate;
-//
+    //
 //    private LocalDate testLocalDate; //년월
 //    private LocalDateTime testLocalDateTime; //년월일
 //
 //    @Lob//큰거(blob)
 //    private String description;
     @OneToOne //일대일
-    @JoinColumn(name="LOCKER_ID")
+    @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
+
+//    @OneToMany(mappedBy = "member")
+//    private List<MemberProduct> memberProducts = new ArrayList<>();
 
     public Long getId() {
         return id;
