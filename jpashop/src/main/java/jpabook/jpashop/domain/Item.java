@@ -4,8 +4,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//Item만 단독으로 저장하는 경우는 없음. 추상 클래스로 대체
 @Entity
-public class Item {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn
+public abstract class Item {
     @Id
     @GeneratedValue
     @Column(name = "ITEM_ID")
