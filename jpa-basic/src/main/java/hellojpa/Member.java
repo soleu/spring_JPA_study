@@ -20,13 +20,18 @@ public class Member extends BaseEntity {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
+    //기간 Period
+    @Embedded
+    private Period workPeriod;
+    //주소
+    @Embedded
+    private Address homeAddress;
 
     //    private Integer age;
 //
 //    @Enumerated(EnumType.STRING)//DB에 enum이 없어서, string으로 설정됨
 //    private RoleType roleType;
 //
-
 
 //    @Temporal(TemporalType.TIMESTAMP)
 //    private Date createdDate;
@@ -39,9 +44,9 @@ public class Member extends BaseEntity {
 //
 //    @Lob//큰거(blob)
 //    private String description;
-    @OneToOne(fetch = FetchType.LAZY) //일대일, 지연로딩 설정
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
+//    @OneToOne(fetch = FetchType.LAZY) //일대일, 지연로딩설정
+//    @JoinColumn(name = "LOCKER_ID")
+//    private Locker locker;
 
 //    @OneToMany(mappedBy = "member")
 //    private List<MemberProduct> memberProducts = new ArrayList<>();
