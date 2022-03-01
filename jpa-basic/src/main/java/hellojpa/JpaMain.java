@@ -18,8 +18,17 @@ public class JpaMain {
         tx.begin();
         //code 작성
         try {
+            //persist 3개로 작성 -> parent 하나로 child 2개가 관리됐으면 함! => cascade
+            Child child1 = new Child();
+            Child child2 = new Child();
 
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
 
+            em.persist(parent);
+//            em.persist(child1);//parent에 cascade를 사용하면 child 두개가 persist 됨(영속성 전이)_
+//            em.persist(child2);
 //            Movie movie=new Movie();
 //            movie.setDirector("aaaa");
 //            movie.setActor("bbbb");
@@ -51,12 +60,12 @@ public class JpaMain {
             System.out.println("findMember.id = " + findMember.getId());//DB 조회X
             System.out.println("findMember.username = " + findMember.getUsername());//DB 조회(쿼리 날림)
 
-            //프록시 초기화 여부 확인
-            System.out.println("isLoaded = "+ emf.getPersistenceUnitUtil().isLoaded(findMember));
-            //프록시 클래스 인지 확인
-            System.out.println("findMember ="+findMember.getClass());
-            //프록세 강제 초기화
-            Hibernate.initialize(findMember);
+//            //프록시 초기화 여부 확인
+//            System.out.println("isLoaded = "+ emf.getPersistenceUnitUtil().isLoaded(findMember));
+//            //프록시 클래스 인지 확인
+//            System.out.println("findMember ="+findMember.getClass());
+//            //프록세 강제 초기화
+//            Hibernate.initialize(findMember);
 //            Team findTeam=findMember.getTeam();
 ////양방항 조회
 //            Team findTeam = em.find(Team.class, team.getId());

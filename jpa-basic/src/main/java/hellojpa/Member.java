@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
-public class Member extends BaseEntity{
+public class Member extends BaseEntity {
     @Id
     @GeneratedValue
     @Column(name = "MEMBER_ID")
@@ -16,7 +16,7 @@ public class Member extends BaseEntity{
     @Column(name = "USERNAME")//컬럼 이름 설정
     private String username;
 
-    @ManyToOne //단방향 ORM 매핑(양방향도 동일)
+    @ManyToOne(fetch = FetchType.LAZY) //단방향 ORM 매핑(양방향도 동일)
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
@@ -39,7 +39,7 @@ public class Member extends BaseEntity{
 //
 //    @Lob//큰거(blob)
 //    private String description;
-    @OneToOne //일대일
+    @OneToOne(fetch = FetchType.LAZY) //일대일, 지연로딩 설정
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
 
