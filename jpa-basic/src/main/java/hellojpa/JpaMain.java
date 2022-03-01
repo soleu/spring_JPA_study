@@ -1,9 +1,8 @@
 package hellojpa;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import org.hibernate.Hibernate;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -35,16 +34,29 @@ public class JpaMain {
 //            em.persist(team);
 //
             Member member = new Member();
-            member.setCreatedBy("kim");
-            member.setCreatedTime(LocalDateTime.now());
+//            member.setCreatedBy("kim");
+//            member.setCreatedTime(LocalDateTime.now());
             member.setUsername("member1");
 //            member.setTeam(team); //객체로 바로 넣음
             em.persist(member);
 //
             em.flush();
-            em.clear();
+            em.clear();//영속성 초기화
+
+
             //단방향 조회
-//            Member findMember=em.find(Member.class,member.getId());
+            Member findMember = em.find(Member.class, member.getId());
+            //프록시
+//            Member findMember = em.getReference(Member.class, member.getId());
+            System.out.println("findMember.id = " + findMember.getId());//DB 조회X
+            System.out.println("findMember.username = " + findMember.getUsername());//DB 조회(쿼리 날림)
+
+            //프록시 초기화 여부 확인
+            System.out.println("isLoaded = "+ emf.getPersistenceUnitUtil().isLoaded(findMember));
+            //프록시 클래스 인지 확인
+            System.out.println("findMember ="+findMember.getClass());
+            //프록세 강제 초기화
+            Hibernate.initialize(findMember);
 //            Team findTeam=findMember.getTeam();
 ////양방항 조회
 //            Team findTeam = em.find(Team.class, team.getId());
