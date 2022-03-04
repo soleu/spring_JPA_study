@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Member extends BaseEntity {
@@ -16,19 +19,51 @@ public class Member extends BaseEntity {
     @Column(name = "USERNAME")//컬럼 이름 설정
     private String username;
 
-    @ManyToOne(fetch = FetchType.LAZY) //단방향 ORM 매핑(양방향도 동일)
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
-
-    //기간 Period
-    @Embedded
-    private Period workPeriod;
+    //    @ManyToOne(fetch = FetchType.LAZY) //단방향 ORM 매핑(양방향도 동일)
+//    @JoinColumn(name = "TEAM_ID")
+//    private Team team;
+//
+//    //기간 Period
+//    @Embedded
+//    private Period workPeriod;
     //주소
     @Embedded
     private Address homeAddress;
 
+    @ElementCollection
+    @CollectionTable(name = "FAVORITE_FOOD", joinColumns = @JoinColumn(name = "MEMBER_ID"))
+    @Column(name = "FOOD_NAME")
+    private Set<String> favoriteFoods = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(name = "ADDRESS", joinColumns = @JoinColumn(name = "MEMBER_ID")) //join 으로 외래키로 잡침
+    private List<Address> addressHistory = new ArrayList<>();
     //    private Integer age;
 //
+
+    public Address getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public Set<String> getFavoriteFoods() {
+        return favoriteFoods;
+    }
+
+    public void setFavoriteFoods(Set<String> favoriteFoods) {
+        this.favoriteFoods = favoriteFoods;
+    }
+
+    public List<Address> getAddressHistory() {
+        return addressHistory;
+    }
+
+    public void setAddressHistory(List<Address> addressHistory) {
+        this.addressHistory = addressHistory;
+    }
 //    @Enumerated(EnumType.STRING)//DB에 enum이 없어서, string으로 설정됨
 //    private RoleType roleType;
 //
@@ -67,13 +102,13 @@ public class Member extends BaseEntity {
         this.username = username;
     }
 
-    public Team getTeam() {
-        return team;
-    }
-
-    //set보다는 change같은걸 사용하면서 차이를 두기(확인하기 쉽게)
-    public void setTeam(Team team) {
-        this.team = team;
-        team.getMembers().add(this);
-    }
+//    public Team getTeam() {
+//        return team;
+//    }
+//
+//    //set보다는 change같은걸 사용하면서 차이를 두기(확인하기 쉽게)
+//    public void setTeam(Team team) {
+//        this.team = team;
+//        team.getMembers().add(this);
+//    }
 }
