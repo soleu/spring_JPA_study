@@ -17,7 +17,7 @@ public class JPQLMain {
         tx.begin();
 
         try {
-            
+
             //Criteria 사용 준비
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<Member> query = cb.createQuery(Member.class);
