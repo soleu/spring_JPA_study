@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 import java.util.List;
 import java.util.Set;
 
-public class valueTypeMain {
+public class ValueTypeMain {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
