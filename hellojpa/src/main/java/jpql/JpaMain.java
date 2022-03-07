@@ -18,7 +18,21 @@ public class JpaMain {
 
             em.flush();
             em.close();
+//JPQL - case
+//            String query =
+//                    "select " +
+//                            "case when m.age <= 10 then '학생요금' " +
+//                            "     when m.age >= 60 then '경로요금' " +
+//                            "     else '일반요금' "+
+//                            "end " +
+//                            "from Member m";
+//            List<String> result = em.createQuery(query, String.class)
+//                    .getResultList();
+//            for (String s : result) {
+//                System.out.println("s = " + s);
+//            }
             //엔티티 프로젝션
+
 //            List<Member> result = em.createQuery("select m from Member m", Member.class)
 //                    .getResultList();
             //엔티티 프로젝션 (리스트) - join 을 넣어서 명시
@@ -27,7 +41,7 @@ public class JpaMain {
 //임베디드 타입 프로젝션 (엔티티부터 시작)
 //           em.createQuery("select o from Order o", Address.class)
 //                    .getResultList();
-            // 스칼라 타입 프로젝션(여러값)
+//            // 스칼라 타입 프로젝션(여러값)
             List resultList = em.createQuery("select distinct m.username,m.age from Member m", Member.class)
                     .getResultList();
 
@@ -39,7 +53,7 @@ public class JpaMain {
             // 조회 -2 이 방법 사용하기
             List<MemberDTO> resultList1 = em.createQuery("select  new jpql.MemberDTO(m.username,m.age) from Member m", MemberDTO.class)
                     .getResultList();
-            MemberDTO  memberDTO = resultList1.get(0);
+            MemberDTO memberDTO = resultList1.get(0);
             System.out.println("memberDTO = " + memberDTO.getUsername());
             System.out.println("memberDTO = " + memberDTO.getAge());
 
