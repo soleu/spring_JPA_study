@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/querydsl
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  jpa:
+    hibernate:
+      ddl-auto: create #로딩 시점에 drop 후, 재생성
+    properties:
+      hibernate:
+#        show_sql: true # 쿼리 이쁘게, 두번 출력됨
+        format_sql: true
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace #쿼리의 ?를 볼 수 있음

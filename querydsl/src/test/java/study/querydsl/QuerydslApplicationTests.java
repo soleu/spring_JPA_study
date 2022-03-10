@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import study.querydsl.entity.Hello;
 import study.querydsl.entity.QHello;
 
@@ -15,7 +16,8 @@ import javax.transaction.Transactional;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
-@Transactional
+@Transactional //rollback 됨
+@Commit
 class QuerydslApplicationTests {
 
     //	@PersistenceContext //spring -> 다른 컨테이너로 바꿀 가능성 있을경우
