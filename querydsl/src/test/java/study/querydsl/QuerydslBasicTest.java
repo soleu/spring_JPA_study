@@ -14,12 +14,14 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
+import static study.querydsl.entity.QMember.*;
 
 @SpringBootTest
 @Transactional
 public class QuerydslBasicTest {
     @Autowired
     EntityManager em;
+    JPAQueryFactory queryFactory = new JPAQueryFactory(em);
 
     @BeforeEach
     public void before() {
@@ -51,7 +53,7 @@ public class QuerydslBasicTest {
 
     @Test
     public void startQuerydsl() {
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+
         QMember m = new QMember("m"); //cmd+option+v
 
         Member findMember = queryFactory
@@ -61,5 +63,16 @@ public class QuerydslBasicTest {
                 .fetchOne();
         assertThat(findMember.getUsername()).isEqualTo("member1");
 
+    }
+
+    @Test
+    public void search() {
+        Member findMember = queryFactory
+                .selectFrom(member)
+                .where(member.username.eq("member1")
+                        .and( member.age.eq(10)))
+                .fetchOne();
+
+        assertThat(findMember.getUsername()).isEqualTo("member1");
     }
 }
