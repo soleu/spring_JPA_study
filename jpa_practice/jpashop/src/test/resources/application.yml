@@ -1,0 +1,19 @@
+spring:
+  ## 사실 스프링 부트는 기본적으로 알아서 메모리 db(test db) 사용 - create-drop 방식
+#  datasource: ##memory db 사용으로 격리된 테스트 환경 조성(h2.inmemory)
+#    url: jdbc:h2:mem:test
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+##       show_sql: true #sout으로 출력(쓰면 안됨)
+#        format_sql: true
+
+logging.level:
+  org.hibernate.SQL: debug #sql이 다 출력. 로그로.
+#    org.hibernate.type: trace
