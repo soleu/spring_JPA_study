@@ -1,4 +1,8 @@
 spring:
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: ./html
+
   datasource:
     url: jdbc:h2:tcp://localhost/~/jpashop1
     username: sa
