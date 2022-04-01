@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,6 +23,7 @@ public class MemberController {
         model.addAttribute("memberForm", new MemberForm());
         return "members/createMemberForm";
     }
+
     @PostMapping(value = "/members/new")
     public String create(@Valid MemberForm form, BindingResult result) {
         if (result.hasErrors()) {
@@ -35,5 +37,12 @@ public class MemberController {
 
         memberService.join(member);
         return "redirect:/";
+    }
+
+    @GetMapping("/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList"; //해당 경로에 뿌림
     }
 }
