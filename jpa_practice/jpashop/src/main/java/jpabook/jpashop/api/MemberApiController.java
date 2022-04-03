@@ -60,6 +60,7 @@ public class MemberApiController {
     @Data
     @AllArgsConstructor
     static class Result<T> {
+        //private int count;
         private T data;
     }
 
@@ -67,6 +68,7 @@ public class MemberApiController {
     @AllArgsConstructor
     static class MemberDto {
         private String name;
+
     }
 
     @Data
