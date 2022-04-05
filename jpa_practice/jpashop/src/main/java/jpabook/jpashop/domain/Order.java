@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,7 +25,7 @@ public class Order {
     private Long id;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
-    private Member member;
+    private Member member;// = new ByteBuddyInterceptor();//프록시 초기화(가짜로 만들어놓음)
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)//영속성 컨텍스트 동반
     private List<OrderItem> orderItems = new ArrayList<>();
